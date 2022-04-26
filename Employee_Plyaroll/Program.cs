@@ -14,6 +14,7 @@ namespace EmployeePayrollADO
         {
             int Option = 0;
             EmployeePlayroll employeePlayroll = new EmployeePlayroll();
+            Employee empPayroll = new Employee();
             do
             {
                 Console.WriteLine("\nWelcome in Employee Service Payroll");

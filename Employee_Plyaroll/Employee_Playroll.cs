@@ -67,12 +67,74 @@ namespace EmployeePayrollADO
                         empPayroll.IncomeTax = dr.IsDBNull(6) ? 0 : dr.GetInt64(6);
                         empPayroll.NetPay = dr.IsDBNull(7) ? 0 : dr.GetInt64(7);
                         empPayrollList.Add(empPayroll);
-                        Console.WriteLine(empPayroll.ID + "," + empPayroll.Firstname +","+empPayroll.LastName+ "," + empPayroll.Gender + "," + empPayroll.BasicPay +  ","+ empPayroll.Deducations+"," + empPayroll.TaxablePay + "," + empPayroll.IncomeTax + "," + empPayroll.NetPay);
+                        Console.WriteLine(empPayroll.ID + "," + empPayroll.Firstname + "," + empPayroll.LastName + "," + empPayroll.Gender + "," + empPayroll.BasicPay + "," + empPayroll.Deducations + "," + empPayroll.TaxablePay + "," + empPayroll.IncomeTax + "," + empPayroll.NetPay);
                     }
                 }
                 sqlconnection.Close();
             }
             return empPayrollList;
+        }
+        public bool UpdateEmployeeSalary(Employee empPayroll)
+        {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand("[dbo].[UpdateEmplyoeeSalary]", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ID", empPayroll.ID);
+                        command.Parameters.AddWithValue("@First_Name", empPayroll.Firstname);
+                        command.Parameters.AddWithValue("@Basic_Pay", empPayroll.BasicPay);
+                        command.Parameters.AddWithValue("@Deduction", empPayroll.Deducations);
+                        command.Parameters.AddWithValue("@Taxable_Pay", empPayroll.TaxablePay);
+                        command.Parameters.AddWithValue("@Income_Tax", empPayroll.IncomeTax);
+                        command.Parameters.AddWithValue("@Net_Pay", empPayroll.NetPay);
+                        connection.Open();
+                        var result = command.ExecuteNonQuery();
+                        connection.Close();
+                        if (result != 0)
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                  throw new EmployeePayrollException(EmployeePayrollException.ExceptionType.SALARYNOTUPDATE, "Emplyoee Salary Not Updated");
+                  return false;
+                }
+        }
+        public static Employee InsertEmployeeData(Employee employee)
+        {
+            string spName = "dbo.[AddingEmployeeDetails]";
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(spName, connection);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@First_Name", employee.Firstname);
+                    cmd.Parameters.AddWithValue("@Gender", employee.Gender);
+                    //cmd.Parameters.AddWithValue("@StartDate", employee.StartDate);
+                    cmd.Parameters.AddWithValue("@Basic_Pay", employee.BasicPay);
+                    //0
+
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return employee;
         }
     }
 }

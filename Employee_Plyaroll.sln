@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee_Plyaroll", "Employee_Plyaroll\Employee_Plyaroll.csproj", "{24361C74-3EC1-46F8-BB6A-23F858923D3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{A88B94CE-6656-4EE8-8875-C7CC908F9F63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{24361C74-3EC1-46F8-BB6A-23F858923D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24361C74-3EC1-46F8-BB6A-23F858923D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24361C74-3EC1-46F8-BB6A-23F858923D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A88B94CE-6656-4EE8-8875-C7CC908F9F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88B94CE-6656-4EE8-8875-C7CC908F9F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A88B94CE-6656-4EE8-8875-C7CC908F9F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A88B94CE-6656-4EE8-8875-C7CC908F9F63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
